@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "topic": "turn off alarm",
+    "desc": "when you wake up morning turn off the alarm, but don't break it"
+  },
+  {
+    "id": 2,
+    "topic": "prepare your bed",
+    "desc": "preparing your bed when you wake up is a good habit, practice it and do it on every morning"
+  },
+  {
+    "id": 3,
+    "topic": "Get ready up",
+    "desc": "Get ready up and go for work or do your daily activities"
+  }
+]
+
