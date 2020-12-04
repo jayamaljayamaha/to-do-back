@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
             console.log(err);
         } else {
             obj = JSON.parse(data);
-            res.send(JSON.stringify(obj));
+            res.send(obj);
         }
     });
 
