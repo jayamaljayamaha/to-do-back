@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var list = require('../public/Resources/todolist');
 var fs = require('fs');
 var path = require('path');
 
@@ -21,7 +20,6 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
     let body = req.body;
-
     var jsonPath = path.join(__dirname, "../public/Resources/todolist.json");
     fs.readFile(jsonPath, function(err, data) {
 
@@ -29,21 +27,22 @@ router.post('/', function (req, res, next) {
             console.log(err);
         } else {
             obj = JSON.parse(data);
-            let json = JSON.stringify(obj);
-            let lastObj = json[json.length-1];
+            let lastObj = obj[obj.length-1];
             let newObj = {
-                "id": lastObj+1,
+                "id": lastObj.id+1,
                 "topic": body.topic,
                 "desc": body.desc
-            }
-            json.append(newObj);
-
-            fs.writeFile('../public/Resources/todolist.json', json);
+            };
+            obj.push(newObj);
+            let json = JSON.stringify(obj);
+            fs.writeFile(jsonPath, json, (err) =>{
+                if(err){
+                    console.log(err);
+                }
+            });
+            res.send(newObj);
         }
     });
-
-
-    res.sendStatus(200)
 });
 
 module.exports = router;
